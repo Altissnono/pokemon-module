@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PokemonService } from './services/pokemon.service';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -8,7 +8,7 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [PokemonService],
     }).compile();
 
     appController = app.get<AppController>(AppController);
@@ -16,7 +16,14 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.Getallpokemon()).toBe('Hello World!');
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+
+  describe('getAllPokemon', () => {
+    it('should return list of pokemons', () => {
+      const pokemons = appController.getAllPokemon();
+      expect(pokemons).toBeTruthy();
     });
   });
 });
