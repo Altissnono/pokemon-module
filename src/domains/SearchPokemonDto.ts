@@ -1,0 +1,3 @@
+interface SearchPokemonDto {
+  name: string;
+}

@@ -1,19 +1,35 @@
-import { Controller, Get, Render } from '@nestjs/common';
-import { PokemonService } from '../services/pokemon.service';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  Render,
+} from '@nestjs/common';
+import { query } from 'express';
+import { PokemonService } from '../services/PokemonService';
 
-@Controller('/pokemon')
+@Controller('/pokemons')
 export class PokemonController {
-  constructor(private readonly pokemonService: PokemonService) { }
+  constructor(private readonly pokemonService: PokemonService) {}
 
   @Get()
   @Render('index')
-  async root(): Promise<Readonly<any>> {
-    const pokemonList = await this.pokemonService.getAllPokemon();
-    return { list: pokemonList };
+  async findAll(@Query('page') page: string) {
+    const pokemons = await this.pokemonService.findAll(page);
+    return { message: pokemons };
   }
 
-  @Get('/data')
-  getAllPokemon() {
-    return this.pokemonService.getAllPokemon();
+  @Render('index')
+  async TypePoke(@Query('poke') poke: string) {
+    const pokemons = await this.pokemonService.TypePoke(poke);
+    return { message: pokemons };
+  }
+
+  @Post()
+  async findPokemon(@Body() searchPokemonDto: SearchPokemonDto) {
+    const pokemon = await this.pokemonService.findPokemon(searchPokemonDto);
+    return pokemon;
   }
 }

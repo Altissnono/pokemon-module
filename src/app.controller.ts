@@ -1,17 +1,13 @@
-import { Controller, Get, Patch, Post, Put, Query, Render } from '@nestjs/common';
-import { PokemonService } from './services/pokemon.service';
+import { Controller, Get, Render } from '@nestjs/common';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: PokemonService) {}
+  constructor(private readonly appService: AppService) {}
 
   @Get()
-  getAllPokemon(): any {
-    return this.appService.getAllPokemon();
+  @Render('index')
+  root(): any {
+    return { message: 'TEST éhéh' };
   }
-
-  @Get()
-    getHello(): string {
-        return 'Hello World!';
-    }
 }
