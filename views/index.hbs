@@ -26,7 +26,6 @@
     <input class="form-control" type="text" name="name" id="name" autocomplete="off">
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <button id="theme-btn">Changer de thème</button>
   <br><br>
   <div class='pokemons_list' style="align-items: baseline;" width="35px">
   {{#each message}}
@@ -56,11 +55,5 @@
     </div>
     {{/each}}
     <p>Total : {{message.count}} </p>
-  <script>
-    var themeBtn = document.getElementById("theme-btn");
-    var isDark = true;
-    themeBtn.addEventListener("click", function() {
-      var elements = document.getElementsByClassName
-  </script>
 </body>
 </html>
