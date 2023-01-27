@@ -18,26 +18,34 @@
       justify-content: space-between;
       align-items: center;
     }
+    .card-img-top {
+    transition: box-shadow 0.3s ease; 
+    float: left;
+    }
+    .card-img-top:hover {
+    box-shadow: 0px 1px 50px rgb(19, 19, 25);
+    }
   </style>
 </head>
 <body>
-  <a href="http://localhost:3001/pokemons" style="text-decoration: none; color:black"><h1>Pokédex</h1></a>
-  <form class="w-50 mx-auto mt-4 d-flex" action="http://localhost:3001/pokemons" method="post">
+  <a href="http://localhost:3001/pokemons" style="text-decoration: none; color:black"><h1> Pokédex</h1></a>
+  <form class="w-50 mx-auto mt-4 d-flex" action="http://localhost:3001/pokemons" method="post"><br>
     <input class="form-control" type="text" name="name" id="name" autocomplete="off">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" sty class="btn btn-primary">Submit</button>
   </form>
   <br><br>
   <div class='pokemons_list' style="align-items: baseline;" width="35px">
+
   {{#each message}}
     <div class="card" style="width: 20%; padding: 10px; border: 1px solid black;, align=center;">
-      <img class="card-img-top" src="{{image}}" alt="Card image cap" style="width: 100%;">
+      <img class="card-img-top" src="{{image}}" alt="Card image cap" style="width: 100%;" onmouseover="this.classList.add('shadow')" onmouseout="this.classList.remove('shadow')">
       <div class="card-body">
         <div class="d-flex w-100">
-          <h5 class="card-title">{{name}}</h5>
+          <h5 class="card-title" style="text-align: center; justify-content: center; display: flex;">{{name}}</h5>
           <p {{apiGeneration}}</p>
           <div id="types" class="d-flex w-100 justify-content-end">
             {{#each apiType}}
-             <a href="{{url}}"><p><img src="{{image}}" width="35px"/>{{name}}</p></a>
+             <a href="{{url}}"><p><img src="{{image}}" width="35px"/>{{name}} </p></a>
             {{/each}}
           </div>
         </div>
